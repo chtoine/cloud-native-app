@@ -1,19 +1,15 @@
-#GO
 # BUILD
-FROM docker.io/golang:1.18-alpine as build
-
-WORKDIR /usr/src/app
+FROM golang:alpine as builder
 
 COPY dispatcher.go .
 RUN go build dispatcher.go
 
 # RUN
-FROM golang:1.18-alpine
+FROM alpine:3.16.0
 
-ENTRYPOINT ["/go/dispatcher"]
 EXPOSE 80
 
-WORKDIR /go
+COPY --from=builder /go/dispatcher /
+COPY static /static/
 
-COPY --from=build /usr/src/app/dispatcher /go/
-COPY static /go/static/
+CMD ["/dispatcher"]

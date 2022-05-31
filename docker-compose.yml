@@ -1,0 +1,19 @@
+version: '3.3'
+
+services:
+
+  db:
+    build: db
+    image: veriepeantoine/cesi-cloud-db:1.0
+
+  words:
+    build: words
+    image: veriepeantoine/cesi-cloud-api:1.0
+    deploy:
+      replicas: 5
+
+  web:
+    build: web
+    image: veriepeantoine/cesi-cloud-web:1.0
+    ports:
+     - "8080:80"
