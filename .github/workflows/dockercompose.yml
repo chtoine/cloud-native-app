@@ -35,11 +35,12 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
         
       - name: docker build back
-        run: docker build -t back-maven ./words
+        run: |
+          cd ./words
+          docker build -t back-maven .
         
       - name: docker push back
         run: |
-          cd ./words
           docker push veriepeantoine/back-maven:1.0
           cd ..
         
