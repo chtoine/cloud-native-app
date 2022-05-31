@@ -38,17 +38,17 @@ jobs:
         run: docker build -t back-maven ./words
         
       - name: docker push back
-        run: docker push veriepeantoine/cesi-cloud-api:1.0 
+        run: docker push veriepeantoine/back-maven:1.0 
         
       - name: docker build db
         run: docker build -t bdd ./db
         
       - name: push on docker hub
-        run: docker push veriepeantoine/cesi-cloud-db:1.0
+        run: docker push veriepeantoine/bdd:1.0
         
       - name: docker build front
         run: docker build -t front-go ./web
         
       - name: push on docker hub
-        run: docker push veriepeantoine/cesi-cloud-web:1.0
+        run: docker push veriepeantoine/front-go:1.0
         
